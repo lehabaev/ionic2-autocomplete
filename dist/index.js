@@ -7,6 +7,10 @@ import { Observable as Observable$1 } from 'rxjs/Observable';
 import { fromPromise as fromPromise$1 } from 'rxjs/observable/fromPromise';
 import { IonicModule } from 'ionic-angular';
 
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 // searchbar default options
 var defaultOpts = {
     cancelButtonText: 'Cancel',
@@ -23,9 +27,6 @@ var defaultOpts = {
     clearInput: false
 };
 var AutoCompleteComponent = (function () {
-    /**
-     * create a new instace
-     */
     function AutoCompleteComponent() {
         this.hideListOnSelection = true;
         this.onTouchedCallback = noop$1;
@@ -45,17 +46,17 @@ var AutoCompleteComponent = (function () {
         this.defaultOpts = defaultOpts;
     }
     Object.defineProperty(AutoCompleteComponent.prototype, "showList", {
-        /**
+        get: /**
          * @return {?}
          */
-        get: function () {
+        function () {
             return this._showList;
         },
-        /**
+        set: /**
          * @param {?} value
          * @return {?}
          */
-        set: function (value) {
+        function (value) {
             if (this._showList === value) {
                 return;
             }
@@ -70,7 +71,12 @@ var AutoCompleteComponent = (function () {
      * @param {?} event
      * @return {?}
      */
-    AutoCompleteComponent.prototype.handleTap = function (event) {
+    AutoCompleteComponent.prototype.handleTap = /**
+     * handle tap
+     * @param {?} event
+     * @return {?}
+     */
+    function (event) {
         if (this.showResultsFirst || this.keyword.length > 0) {
             this.getItems();
         }
@@ -79,7 +85,11 @@ var AutoCompleteComponent = (function () {
      * @param {?} value
      * @return {?}
      */
-    AutoCompleteComponent.prototype.writeValue = function (value) {
+    AutoCompleteComponent.prototype.writeValue = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
         if (value !== this.selection) {
             this.selection = value || null;
             this.formValue = this.getFormValue(this.selection);
@@ -90,26 +100,40 @@ var AutoCompleteComponent = (function () {
      * @param {?} fn
      * @return {?}
      */
-    AutoCompleteComponent.prototype.registerOnChange = function (fn) {
+    AutoCompleteComponent.prototype.registerOnChange = /**
+     * @param {?} fn
+     * @return {?}
+     */
+    function (fn) {
         this.onChangeCallback = fn;
     };
     /**
      * @param {?} fn
      * @return {?}
      */
-    AutoCompleteComponent.prototype.registerOnTouched = function (fn) {
+    AutoCompleteComponent.prototype.registerOnTouched = /**
+     * @param {?} fn
+     * @return {?}
+     */
+    function (fn) {
         this.onTouchedCallback = fn;
     };
     /**
      * @return {?}
      */
-    AutoCompleteComponent.prototype.updateModel = function () {
+    AutoCompleteComponent.prototype.updateModel = /**
+     * @return {?}
+     */
+    function () {
         this.onChangeCallback(this.formValue);
     };
     /**
      * @return {?}
      */
-    AutoCompleteComponent.prototype.ngAfterViewChecked = function () {
+    AutoCompleteComponent.prototype.ngAfterViewChecked = /**
+     * @return {?}
+     */
+    function () {
         if (this.showListChanged) {
             this.showListChanged = false;
             this.showList ? this.itemsShown.emit() : this.itemsHidden.emit();
@@ -120,7 +144,12 @@ var AutoCompleteComponent = (function () {
      * @param {?=} e
      * @return {?}
      */
-    AutoCompleteComponent.prototype.getItems = function (e) {
+    AutoCompleteComponent.prototype.getItems = /**
+     * get items for auto-complete
+     * @param {?=} e
+     * @return {?}
+     */
+    function (e) {
         var _this = this;
         var /** @type {?} */ result;
         if (this.showResultsFirst && this.keyword.trim() === '') {
@@ -162,14 +191,22 @@ var AutoCompleteComponent = (function () {
      * show item list
      * @return {?}
      */
-    AutoCompleteComponent.prototype.showItemList = function () {
+    AutoCompleteComponent.prototype.showItemList = /**
+     * show item list
+     * @return {?}
+     */
+    function () {
         this.showList = true;
     };
     /**
      * hide item list
      * @return {?}
      */
-    AutoCompleteComponent.prototype.hideItemList = function () {
+    AutoCompleteComponent.prototype.hideItemList = /**
+     * hide item list
+     * @return {?}
+     */
+    function () {
         this.showList = this.alwaysShowList;
     };
     /**
@@ -179,7 +216,14 @@ var AutoCompleteComponent = (function () {
      *
      * @return {?}
      */
-    AutoCompleteComponent.prototype.select = function (selection) {
+    AutoCompleteComponent.prototype.select = /**
+     * select item from list
+     *
+     * @param {?} selection
+     *
+     * @return {?}
+     */
+    function (selection) {
         this.keyword = this.getLabel(selection);
         this.formValue = this.getFormValue(selection);
         this.hideItemList();
@@ -193,17 +237,21 @@ var AutoCompleteComponent = (function () {
         this.selection = selection;
     };
     /**
-     * get current selection
      * @return {?}
      */
-    AutoCompleteComponent.prototype.getSelection = function () {
+    AutoCompleteComponent.prototype.getSelection = /**
+     * @return {?}
+     */
+    function () {
         return this.selection;
     };
     /**
-     * get current input value
      * @return {?}
      */
-    AutoCompleteComponent.prototype.getValue = function () {
+    AutoCompleteComponent.prototype.getValue = /**
+     * @return {?}
+     */
+    function () {
         return this.formValue;
     };
     /**
@@ -211,7 +259,12 @@ var AutoCompleteComponent = (function () {
      * @param {?} selection
      * @return {?}
      */
-    AutoCompleteComponent.prototype.setValue = function (selection) {
+    AutoCompleteComponent.prototype.setValue = /**
+     * set current input value
+     * @param {?} selection
+     * @return {?}
+     */
+    function (selection) {
         this.formValue = this.getFormValue(selection);
         this.keyword = this.getLabel(selection);
         return;
@@ -222,7 +275,13 @@ var AutoCompleteComponent = (function () {
      * @param {?=} hideItemList
      * @return {?}
      */
-    AutoCompleteComponent.prototype.clearValue = function (hideItemList) {
+    AutoCompleteComponent.prototype.clearValue = /**
+     * /**
+     * clear current input value
+     * @param {?=} hideItemList
+     * @return {?}
+     */
+    function (hideItemList) {
         if (hideItemList === void 0) { hideItemList = false; }
         this.keyword = '';
         this.selection = null;
@@ -236,23 +295,41 @@ var AutoCompleteComponent = (function () {
      * set focus of searchbar
      * @return {?}
      */
-    AutoCompleteComponent.prototype.setFocus = function () {
+    AutoCompleteComponent.prototype.setFocus = /**
+     * set focus of searchbar
+     * @return {?}
+     */
+    function () {
         if (this.searchbarElem) {
             this.searchbarElem.setFocus();
         }
     };
     /**
      * fired when the input focused
-     * @return {?}
      */
-    AutoCompleteComponent.prototype.onFocus = function () {
-        this.autoFocus.emit();
-    };
     /**
      * fired when the input focused
      * @return {?}
      */
-    AutoCompleteComponent.prototype.onBlur = function () {
+    AutoCompleteComponent.prototype.onFocus = /**
+     * fired when the input focused
+     * @return {?}
+     */
+    function () {
+        this.autoFocus.emit();
+    };
+    /**
+     * fired when the input focused
+     */
+    /**
+     * fired when the input focused
+     * @return {?}
+     */
+    AutoCompleteComponent.prototype.onBlur = /**
+     * fired when the input focused
+     * @return {?}
+     */
+    function () {
         this.autoBlur.emit();
     };
     /**
@@ -260,7 +337,12 @@ var AutoCompleteComponent = (function () {
      * @param {?} event
      * @return {?}
      */
-    AutoCompleteComponent.prototype.documentClickHandler = function (event) {
+    AutoCompleteComponent.prototype.documentClickHandler = /**
+     * handle document click
+     * @param {?} event
+     * @return {?}
+     */
+    function (event) {
         if ((this.searchbarElem
             && !this.searchbarElem._elementRef.nativeElement.contains(event.target))
             ||
@@ -272,7 +354,11 @@ var AutoCompleteComponent = (function () {
      * @param {?} selection
      * @return {?}
      */
-    AutoCompleteComponent.prototype.getFormValue = function (selection) {
+    AutoCompleteComponent.prototype.getFormValue = /**
+     * @param {?} selection
+     * @return {?}
+     */
+    function (selection) {
         if (selection == null) {
             return null;
         }
@@ -286,7 +372,11 @@ var AutoCompleteComponent = (function () {
      * @param {?} selection
      * @return {?}
      */
-    AutoCompleteComponent.prototype.getLabel = function (selection) {
+    AutoCompleteComponent.prototype.getLabel = /**
+     * @param {?} selection
+     * @return {?}
+     */
+    function (selection) {
         if (selection == null) {
             return '';
         }
@@ -300,42 +390,44 @@ var AutoCompleteComponent = (function () {
         }
         return value || '';
     };
+    AutoCompleteComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ion-auto-complete',
+                    template: "\n        <ion-input\n                #inputElem\n                (keyup)=\"getItems($event)\"\n                (tap)=\"handleTap($event)\"\n                [(ngModel)]=\"keyword\"\n                (ngModelChange)=\"updateModel()\"\n                [placeholder]=\"options.placeholder == null ? defaultOpts.placeholder : options.placeholder\"\n                [type]=\"options.type == null ? defaultOpts.type : options.type\"\n                [clearOnEdit]=\"options.clearOnEdit == null ? defaultOpts.clearOnEdit : options.clearOnEdit\"\n                [clearInput]=\"options.clearInput == null ? defaultOpts.clearInput : options.clearInput\"\n                [disabled]=\"disabled\"\n                [ngClass]=\"{'hidden': !useIonInput}\"\n                (ionFocus)=\"onFocus()\"\n                (ionBlur)=\"onBlur()\"\n        >\n        </ion-input>\n        <ion-searchbar\n                #searchbarElem\n                (ionInput)=\"getItems($event)\"\n                (tap)=\"handleTap($event)\"\n                [(ngModel)]=\"keyword\"\n                (ngModelChange)=\"updateModel()\"\n                [cancelButtonText]=\"options.cancelButtonText == null ? defaultOpts.cancelButtonText : options.cancelButtonText\"\n                [showCancelButton]=\"options.showCancelButton == null ? defaultOpts.showCancelButton : options.showCancelButton\"\n                [debounce]=\"options.debounce == null ? defaultOpts.debounce : options.debounce\"\n                [placeholder]=\"options.placeholder == null ? defaultOpts.placeholder : options.placeholder\"\n                [autocomplete]=\"options.autocomplete == null ? defaultOpts.autocomplete : options.autocomplete\"\n                [autocorrect]=\"options.autocorrect == null ? defaultOpts.autocorrect : options.autocorrect\"\n                [spellcheck]=\"options.spellcheck == null ? defaultOpts.spellcheck : options.spellcheck\"\n                [type]=\"options.type == null ? defaultOpts.type : options.type\"\n                [disabled]=\"disabled\"\n                [ngClass]=\"{'hidden': useIonInput}\"\n                (ionClear)=\"clearValue(true)\"\n                (ionFocus)=\"onFocus()\"\n                (ionBlur)=\"onBlur()\"\n        >\n        </ion-searchbar>\n        <ng-template #defaultTemplate let-attrs=\"attrs\">\n            <span [innerHTML]='attrs.label | boldprefix:attrs.keyword'></span>\n        </ng-template>\n        <ul *ngIf=\"!disabled && suggestions.length > 0 && showList\">\n            <li *ngFor=\"let suggestion of suggestions\" (tap)=\"select(suggestion);$event.srcEvent.stopPropagation()\">\n                <ng-template\n                        [ngTemplateOutlet]=\"template || defaultTemplate\"\n                        [ngTemplateOutletContext]=\"\n                        {attrs:{ \n                          data: suggestion, \n                          label: getLabel(suggestion),\n                          keyword: keyword,\n                          formValue: getFormValue(suggestion), \n                          labelAttribute: dataProvider.labelAttribute, \n                          formValueAttribute: dataProvider.formValueAttribute }}\"></ng-template>\n            </li>\n        </ul>\n        <p *ngIf=\"suggestions.length == 0 && showList && options.noItems\">{{ options.noItems }}</p>\n    ",
+                    providers: [
+                        { provide: NG_VALUE_ACCESSOR, useExisting: AutoCompleteComponent, multi: true }
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    AutoCompleteComponent.ctorParameters = function () { return []; };
+    AutoCompleteComponent.propDecorators = {
+        "dataProvider": [{ type: Input },],
+        "options": [{ type: Input },],
+        "disabled": [{ type: Input },],
+        "keyword": [{ type: Input },],
+        "showResultsFirst": [{ type: Input },],
+        "alwaysShowList": [{ type: Input },],
+        "hideListOnSelection": [{ type: Input },],
+        "template": [{ type: Input },],
+        "useIonInput": [{ type: Input },],
+        "autoFocus": [{ type: Output },],
+        "autoBlur": [{ type: Output },],
+        "itemSelected": [{ type: Output },],
+        "itemsShown": [{ type: Output },],
+        "itemsHidden": [{ type: Output },],
+        "ionAutoInput": [{ type: Output },],
+        "searchbarElem": [{ type: ViewChild, args: ['searchbarElem',] },],
+        "inputElem": [{ type: ViewChild, args: ['inputElem',] },],
+        "documentClickHandler": [{ type: HostListener, args: ['document:click', ['$event'],] },],
+    };
     return AutoCompleteComponent;
 }());
-AutoCompleteComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ion-auto-complete',
-                template: "\n        <ion-input\n                #inputElem\n                (keyup)=\"getItems($event)\"\n                (tap)=\"handleTap($event)\"\n                [(ngModel)]=\"keyword\"\n                (ngModelChange)=\"updateModel()\"\n                [placeholder]=\"options.placeholder == null ? defaultOpts.placeholder : options.placeholder\"\n                [type]=\"options.type == null ? defaultOpts.type : options.type\"\n                [clearOnEdit]=\"options.clearOnEdit == null ? defaultOpts.clearOnEdit : options.clearOnEdit\"\n                [clearInput]=\"options.clearInput == null ? defaultOpts.clearInput : options.clearInput\"\n                [disabled]=\"disabled\"\n                [ngClass]=\"{'hidden': !useIonInput}\"\n                (ionFocus)=\"onFocus()\"\n                (ionBlur)=\"onBlur()\"\n        >\n        </ion-input>\n        <ion-searchbar\n                #searchbarElem\n                (ionInput)=\"getItems($event)\"\n                (tap)=\"handleTap($event)\"\n                [(ngModel)]=\"keyword\"\n                (ngModelChange)=\"updateModel()\"\n                [cancelButtonText]=\"options.cancelButtonText == null ? defaultOpts.cancelButtonText : options.cancelButtonText\"\n                [showCancelButton]=\"options.showCancelButton == null ? defaultOpts.showCancelButton : options.showCancelButton\"\n                [debounce]=\"options.debounce == null ? defaultOpts.debounce : options.debounce\"\n                [placeholder]=\"options.placeholder == null ? defaultOpts.placeholder : options.placeholder\"\n                [autocomplete]=\"options.autocomplete == null ? defaultOpts.autocomplete : options.autocomplete\"\n                [autocorrect]=\"options.autocorrect == null ? defaultOpts.autocorrect : options.autocorrect\"\n                [spellcheck]=\"options.spellcheck == null ? defaultOpts.spellcheck : options.spellcheck\"\n                [type]=\"options.type == null ? defaultOpts.type : options.type\"\n                [disabled]=\"disabled\"\n                [ngClass]=\"{'hidden': useIonInput}\"\n                (ionClear)=\"clearValue(true)\"\n                (ionFocus)=\"onFocus()\"\n                (ionBlur)=\"onBlur()\"\n        >\n        </ion-searchbar>\n        <ng-template #defaultTemplate let-attrs=\"attrs\">\n            <span [innerHTML]='attrs.label | boldprefix:attrs.keyword'></span>\n        </ng-template>\n        <ul *ngIf=\"!disabled && suggestions.length > 0 && showList\">\n            <li *ngFor=\"let suggestion of suggestions\" (tap)=\"select(suggestion);$event.srcEvent.stopPropagation()\">\n                <ng-template\n                        [ngTemplateOutlet]=\"template || defaultTemplate\"\n                        [ngTemplateOutletContext]=\"\n                        {attrs:{ \n                          data: suggestion, \n                          label: getLabel(suggestion),\n                          keyword: keyword,\n                          formValue: getFormValue(suggestion), \n                          labelAttribute: dataProvider.labelAttribute, \n                          formValueAttribute: dataProvider.formValueAttribute }}\"></ng-template>\n            </li>\n        </ul>\n        <p *ngIf=\"suggestions.length == 0 && showList && options.noItems\">{{ options.noItems }}</p>\n    ",
-                providers: [
-                    { provide: NG_VALUE_ACCESSOR, useExisting: AutoCompleteComponent, multi: true }
-                ]
-            },] },
-];
-/**
- * @nocollapse
- */
-AutoCompleteComponent.ctorParameters = function () { return []; };
-AutoCompleteComponent.propDecorators = {
-    'dataProvider': [{ type: Input },],
-    'options': [{ type: Input },],
-    'disabled': [{ type: Input },],
-    'keyword': [{ type: Input },],
-    'showResultsFirst': [{ type: Input },],
-    'alwaysShowList': [{ type: Input },],
-    'hideListOnSelection': [{ type: Input },],
-    'template': [{ type: Input },],
-    'useIonInput': [{ type: Input },],
-    'autoFocus': [{ type: Output },],
-    'autoBlur': [{ type: Output },],
-    'itemSelected': [{ type: Output },],
-    'itemsShown': [{ type: Output },],
-    'itemsHidden': [{ type: Output },],
-    'ionAutoInput': [{ type: Output },],
-    'searchbarElem': [{ type: ViewChild, args: ['searchbarElem',] },],
-    'inputElem': [{ type: ViewChild, args: ['inputElem',] },],
-    'documentClickHandler': [{ type: HostListener, args: ['document:click', ['$event'],] },],
-};
 
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 /**
  * bolds the beggining of the matching string in the item
  */
@@ -347,59 +439,67 @@ var BoldPrefix = (function () {
      * @param {?} keyword
      * @return {?}
      */
-    BoldPrefix.prototype.transform = function (value, keyword) {
+    BoldPrefix.prototype.transform = /**
+     * @param {?} value
+     * @param {?} keyword
+     * @return {?}
+     */
+    function (value, keyword) {
         if (!keyword)
             return value;
         var /** @type {?} */ escaped_keyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         return value.replace(new RegExp(escaped_keyword, 'gi'), function (str) { return str.bold(); });
     };
+    BoldPrefix.decorators = [
+        { type: Pipe, args: [{
+                    name: 'boldprefix'
+                },] },
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    BoldPrefix.ctorParameters = function () { return []; };
     return BoldPrefix;
 }());
-BoldPrefix.decorators = [
-    { type: Pipe, args: [{
-                name: 'boldprefix'
-            },] },
-    { type: Injectable },
-];
-/**
- * @nocollapse
- */
-BoldPrefix.ctorParameters = function () { return []; };
 
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 var AutoCompleteModule = (function () {
     function AutoCompleteModule() {
     }
     /**
      * @return {?}
      */
-    AutoCompleteModule.forRoot = function () {
+    AutoCompleteModule.forRoot = /**
+     * @return {?}
+     */
+    function () {
         return {
             ngModule: AutoCompleteModule,
             providers: []
         };
     };
+    AutoCompleteModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FormsModule,
+                        IonicModule
+                    ],
+                    declarations: [
+                        AutoCompleteComponent,
+                        BoldPrefix
+                    ],
+                    exports: [
+                        AutoCompleteComponent,
+                        BoldPrefix
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    AutoCompleteModule.ctorParameters = function () { return []; };
     return AutoCompleteModule;
 }());
-AutoCompleteModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [
-                    CommonModule,
-                    FormsModule,
-                    IonicModule
-                ],
-                declarations: [
-                    AutoCompleteComponent,
-                    BoldPrefix
-                ],
-                exports: [
-                    AutoCompleteComponent,
-                    BoldPrefix
-                ]
-            },] },
-];
-/**
- * @nocollapse
- */
-AutoCompleteModule.ctorParameters = function () { return []; };
 
 export { AutoCompleteModule, AutoCompleteComponent, BoldPrefix };

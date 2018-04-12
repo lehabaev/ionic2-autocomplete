@@ -271,18 +271,11 @@ export class AutoCompleteComponent implements ControlValueAccessor {
         this.selection = selection;
     }
 
-    /**
-     * get current selection
-     * @returns {any}
-     */
+
     public getSelection(): any {
         return this.selection;
     }
 
-    /**
-     * get current input value
-     * @returns {string}
-     */
     public getValue() {
         return this.formValue;
     }

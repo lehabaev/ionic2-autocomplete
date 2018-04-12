@@ -45,42 +45,62 @@ gulp.task('inline-resources', function () {
  * 4. Run the Angular compiler, ngc, on the /.tmp folder. This will output all
  *    compiled modules to the /build folder.
  */
+
+
 gulp.task('ngc', function () {
-  return ngc({
-    project: `${tmpFolder}/tsconfig.es5.json`
-  })
-    .then((exitCode) => {
-      if (exitCode === 1) {
-        // This error is caught in the 'compile' task by the runSequence method callback
-        // so that when ngc fails to compile, the whole compile process stops running
-        throw new Error('ngc compilation failed');
-      }
-    });
+    return ngc(['-p', `${tmpFolder}/tsconfig.es5.json`]);
 });
+
+// gulp.task('ngc', function () {
+//   return ngc({
+//     project: `${tmpFolder}/tsconfig.es5.json`
+//   })
+//     .then((exitCode) => {
+//       if (exitCode === 1) {
+//         // This error is caught in the 'compile' task by the runSequence method callback
+//         // so that when ngc fails to compile, the whole compile process stops running
+//         throw new Error('ngc compilation failed');
+//       }
+//     });
+// });
 
 /**
  * 5. Run rollup inside the /build folder to generate our Flat ES module and place the
  *    generated file into the /dist folder
  */
 gulp.task('rollup:fesm', function () {
+    const rollupGlobals = {
+        '@angular/core': 'ng.core',
+        '@angular/platform-browser': 'ng.platformBrowser',
+        '@angular/common': 'ng.common',
+        '@angular/forms': 'ng.forms',
+        '@angular/router': 'ng.router',
+        'rxjs/Observable': 'Rx.Observable',
+        'rxjs/observable/fromPromise': 'fromPromise',
+        'rxjs/util/noop': 'noop',
+        'ionic-angular': 'ionicAngular',
+        'rxjs/Subject': 'Rx.Subject',
+        'typescript': 'ts'
+    }
   return gulp.src(`${buildFolder}/**/*.js`)
   // transform the files here.
     .pipe(rollup({
 
       // Bundle's entry point
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
-      entry: `${buildFolder}/index.js`,
+      input: `${buildFolder}/index.js`,
 
       // A list of IDs of modules that should remain external to the bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
-      external: [
-        '@angular/core',
-        '@angular/common'
-      ],
+        external: Object.keys(rollupGlobals),
+
 
       // Format of generated bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
-      format: 'es'
+        output: {
+            format: 'es',
+            globals: rollupGlobals
+      }
     }))
     .pipe(gulp.dest(distFolder));
 });
@@ -90,38 +110,53 @@ gulp.task('rollup:fesm', function () {
  *    generated file into the /dist folder
  */
 gulp.task('rollup:umd', function () {
+    const rollupGlobals = {
+        '@angular/core': 'ng.core',
+        '@angular/platform-browser': 'ng.platformBrowser',
+        '@angular/common': 'ng.common',
+        '@angular/forms': 'ng.forms',
+        '@angular/router': 'ng.router',
+        'rxjs/Observable': 'Rx.Observable',
+        'rxjs/observable/fromPromise': 'fromPromise',
+        'rxjs/util/noop': 'noop',
+        'ionic-angular': 'ionicAngular',
+        'rxjs/Subject': 'Rx.Subject',
+        'typescript': 'ts'
+    }
+
   return gulp.src(`${buildFolder}/**/*.js`)
   // transform the files here.
     .pipe(rollup({
 
       // Bundle's entry point
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
-      entry: `${buildFolder}/index.js`,
+      input: `${buildFolder}/index.js`,
 
       // A list of IDs of modules that should remain external to the bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
-      external: [
-        '@angular/core',
-        '@angular/common'
-      ],
+      external: Object.keys(rollupGlobals),
+
 
       // Format of generated bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
-      format: 'umd',
 
       // Export mode to use
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#exports
-      exports: 'named',
 
       // The name to use for the module for UMD/IIFE bundles
       // (required for bundles with exports)
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#modulename
-      name: 'ionic2-auto-complete',
 
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
-      globals: {
-        typescript: 'ts'
-      }
+        output: {
+            name: 'ionic2-auto-complete',
+
+            // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
+            globals: rollupGlobals,
+
+            format: 'umd',
+            exports: 'named',
+        },
+
 
     }))
     .pipe(rename('ionic2-auto-complete.umd.js'))

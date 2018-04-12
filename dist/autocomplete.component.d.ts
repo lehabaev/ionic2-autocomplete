@@ -60,15 +60,7 @@ export declare class AutoCompleteComponent implements ControlValueAccessor {
      * @param selection
      **/
     select(selection: any): void;
-    /**
-     * get current selection
-     * @returns {any}
-     */
     getSelection(): any;
-    /**
-     * get current input value
-     * @returns {string}
-     */
     getValue(): any;
     /**
      * set current input value
